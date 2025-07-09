@@ -414,8 +414,14 @@ jobs:
         run: |
           echo "🏗️ 开始内核编译..."
           if [ "${{ github.event.inputs.KERNEL_VERSION }}" == "6.1" ]; then
+            mkdir -p clang-21 && cd clang-21
+            wget https://api.fate.vip/https://github.com/ZyCromerZ/Clang/releases/download/21.0.0git-20250618-release/Clang-21.0.0git-20250618.tar.gz
+            echo "Clang 21.0.0 下载完成，正在解压..."
+            tar -xzf Clang-21.0.0git-20250618.tar.gz
+            rm Clang-21.0.0git-20250618.tar.gz
+            echo "Clang 21.0.0 已下载并解压到 clang-21 目录中。"
+            export PATH="/clang-21/bin:$PATH"
             export KBUILD_BUILD_TIMESTAMP="Wed May 29 07:25:40 UTC 2025"
-            export PATH="$GITHUB_WORKSPACE/kernel_workspace/kernel_platform/prebuilts/clang/host/linux-x86/clang-r487747c/bin:$PATH"
             export PATH="/usr/lib/ccache:$PATH"
             sudo apt install libelf-dev
             cd kernel_workspace/kernel_platform/common
