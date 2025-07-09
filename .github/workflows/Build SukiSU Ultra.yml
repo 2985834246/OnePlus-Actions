@@ -420,7 +420,7 @@ jobs:
             tar -xzf Clang-21.0.0git-20250618.tar.gz
             rm Clang-21.0.0git-20250618.tar.gz
             echo "Clang 21.0.0 已下载并解压到 clang-21 目录中。"
-            export PATH="/clang-21/bin:$PATH"
+            export PATH="$GITHUB_WORKSPACE/clang-21/bin:$PATH"
             export KBUILD_BUILD_TIMESTAMP="Wed May 29 07:25:40 UTC 2025"
             export PATH="/usr/lib/ccache:$PATH"
             sudo apt install libelf-dev
